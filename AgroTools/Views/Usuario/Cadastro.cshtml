@@ -1,0 +1,16 @@
+﻿<main>
+    <div class="cadastro-container">
+        <div class="cadastro-panel">
+            <form method="POST" action='@Url.Action("CadastrarUsuario", "Usuario")'>
+                <img class="logo" src="~/img/LogoAgro.png" />
+                <div class="inputs-container d-flex flex-column">
+                    <input name="nome" type="text" placeholder="Digite seu nome:" />
+                    <input name="email" type="email" placeholder="Digite seu email:" />
+                    <input name="senha" type="password" placeholder="Digite sua senha:" />
+                    <input type="password" placeholder="Digite sua senha novamente:" />
+                </div>
+                <input class="button-submit" value="Cadastrar" type="submit" />
+            </form>
+        </div>
+    </div>
+</main>

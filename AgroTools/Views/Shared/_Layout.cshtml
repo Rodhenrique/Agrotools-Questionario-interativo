@@ -1,0 +1,114 @@
+﻿@model AgroTools.ViewModels.BaseViewModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AgroTools</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/Style.css" />
+    <script src="https://kit.fontawesome.com/04a6eebba3.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <img src="~/img/LogoAgro.png" />
+                </li>
+            </ul>
+            <ul>
+                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a href="#">Sobre</a></li>
+                <li><a href="#">Parcerias</a></li>
+            </ul>
+            @if (string.IsNullOrEmpty(Model.UsuarioEmail))
+            {
+                <ul>
+                    <li><a asp-controller="Usuario" asp-action="Index">Login</a></li>
+                    <li><input type="button" value="Cadastre-se" onclick="location.href='@Url.Action("Cadastro", "Usuario")'" /></li>
+                </ul>
+            }
+            else
+            {
+                <ul>
+                    <li><a asp-controller="Usuario" asp-action="Panel">Painel</a></li>
+                    <li><input type="button" value="Sair" onclick="location.href='@Url.Action("Logoff", "Usuario")'" /></li>
+                </ul>
+            }
+
+        </nav>
+    </header>
+    @RenderBody()
+    <footer>
+        <div class="footer-high">
+            <div>
+                <img id="logoFooter" src="~/img/LogoAgro.png" />
+            </div>
+
+            <div>
+                <h2>Endereços</h2>
+                <div>
+                    <p>
+                        Matriz
+                        <br />
+                        São Paulo – SP
+                        <br />
+                        Telefone: + 55 11 3049 1480
+                    </p>
+                </div>
+
+                <div>
+                    <p>
+                        Núcleo Tecnológico
+                        <br />
+                        São José dos Campos – SP
+                    </p>
+                </div>
+            </div>
+
+            <div id="footer-container">
+                <h2>Informações</h2>
+                <a href="#">
+                    <span>Assessoria de imprensa</span>
+                </a>
+                <a href="#">
+                    <span>Trabalhe conosco</span>
+
+                </a>
+                <a href="#">
+                    <span>Política de privacidade</span>
+                </a>
+            </div>
+
+            <div>
+                <h2>Certificados e Programas</h2>
+                <img id="selo" src="~/img/selo-great.png" />
+            </div>
+        </div>
+
+        <div class="footer-low">
+            <div>
+                <p>Copyright © 2020 Agrotools.com.br</p>
+            </div>
+
+            <div class="footer-icon">
+                <div>
+                    <i class="fab fa-linkedin-in"></i>
+                </div>
+                <div>
+                    <i class="fab fa-instagram"></i>
+
+                </div>
+                <div>
+                    <i class="fab fa-facebook"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="~/js/Script.js"></script>
+
+</body>
+</html>

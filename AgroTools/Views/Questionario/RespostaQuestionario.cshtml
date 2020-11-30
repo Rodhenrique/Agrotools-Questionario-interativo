@@ -1,0 +1,72 @@
+﻿@model AgroTools.ViewModels.PerguntaViewModel
+<main>
+    <div class="Container-Respostas">
+        <div class="Respostas-Container">
+            <form method="POST" action='@Url.Action("NovaResposta", "Questionario")'>
+
+                <div id="conteudo">
+                    <div class="quest-edita">
+                        <div class="resposta-editar">
+                            <p>Digite seu email:</p>
+                        </div>
+                        <div id="tipoResposta">
+                            <input required name="email" class="resposta-text" placeholder="Digite sua resposta:" type="email" />
+
+                        </div>
+                    </div>
+                </div>
+
+                <input class="Display-none" name="todas" id="todas" type="text" />
+
+                <input class="Display-none" value="@Model.Perguntas[0].ID_Questionario" name="principal" id="principal" type="text" />
+                @{ int count = 1; }
+
+                @foreach (var item in Model.Perguntas)
+                {
+                    <div id="conteudo">
+                        <div class="quest-edita">
+                            <div class="resposta-editar">
+                                <p>@item.Pergunta</p>
+                            </div>
+                            <div id="tipoResposta">
+                            @{string edit = $"elemento" + count;}
+
+                            @if (item.TipoResposta == "1")
+                            {
+                                <input class="Display-none" id="@edit" name="@edit" type="text" />
+                                <input onchange="SalvarResposta(this,'elemento'+@count+'','1',@item.ID)" required class="resposta-text" placeholder="Digite sua resposta:" type="text" />
+                            }
+                            else if (item.TipoResposta.Substring(13).Split(';')[0] == "select")
+                            {
+                                <input class="Display-none" name="@edit" id="@edit" type="text" />
+                                string[] words = item.TipoResposta.Split(';');
+
+                                for (int i = 1; i < words.Length - 1; i++)
+                                {
+                                    <input onchange="SalvarResposta(this,'elemento'+@count+'','2',@item.ID)" required type="radio" name="@edit+id" value="@words[i]">
+                                    <label>@words[i]</label><br>
+                                }
+                            }
+                            else
+                            {
+                                <input class="Display-none" name="@edit" id="@edit" type="text" />
+                                string[] words = item.TipoResposta.Split(';');
+
+                                for (int i = 1; i < words.Length - 1; i++)
+                                {
+                                    <input onchange="SalvarResposta(this,'elemento'+@count+'','3',@item.ID)" type="checkbox" name="@edit+id" value="@words[i]">
+                                    <label>@words[i]</label><br>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+                count++;
+            }
+                <input id="publicar" type="submit" value="Finalizar" />
+
+            </form>
+
+        </div>
+    </div>
+</main>

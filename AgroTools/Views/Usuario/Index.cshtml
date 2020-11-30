@@ -1,0 +1,17 @@
+﻿@model AgroTools.ViewModels.RespostaViewModel
+
+<main>
+    <div class="login-container">
+        <div class="login-panel">
+            <form method="POST" action='@Url.Action("Login", "Usuario")'>
+                <img class="logo" src="~/img/LogoAgro.png" />
+                <div class="inputs-container d-flex flex-column">
+                    <input name="email" type="email" placeholder="Digite seu email:" />
+                    <input name="senha" type="password" placeholder="Digite sua senha:" />
+                    <p id="invalida">@Model.Mensagem</p>
+                </div>
+                <input class="button-submit" value="Entrar" type="submit" />
+            </form>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,49 @@
+﻿<main>
+    <div class="quest-container">
+        <div class="container-quest">
+            <div class="quest-titulo">
+                <input onchange="Atualizar()" id="titulo1" placeholder="Digite seu título" value="Questionário sem título" type="text" />
+                <input onchange="Atualizar()" id="descricao1" placeholder="Digite sua descrição" value="Questionário sem descrição" type="text" />
+            </div>
+
+            <div class="quest-perguntas">
+                <div class="pergunta-edit">
+                    <label>Digite seu email</label>
+                    <input disabled id="email" placeholder="Digite sua resposta:" type="email" />
+                </div>
+            </div>
+            <div id="conteudo">
+                <div class="quest-edita">
+                    <div class="editar">
+                        <textarea id="texto" placeholder="Pergunta"></textarea>
+                        <select id="resposta" onchange="TrocarResposta()">
+                            <option selected="selected" disabled>Selecione tipo da resposta</option>
+                            <option value="1">Texto</option>
+                            <option value="2">Múltiplas escolha</option>
+                            <option value="3">Caixas de seleção</option>
+                        </select>
+                    </div>
+                    <div id="tipoResposta">
+
+                    </div>
+                    <div class="buttons-editar">
+                        <button onclick="Delete()">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+
+                        <button onclick="adicionarQuest()" id="btn-add">Adicionar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form method="POST" action='@Url.Action("NovoQuestionario", "Questionario")'>
+            <div id="total">
+                <input name="todos" type="text" id="todos" />
+                <input id="titulo" value="Questionário sem título" name="titulo"/>
+                <input id="descricao" value="Questionário sem descrição" name="descricao"/>
+
+            </div>
+            <input id="publicar" type="submit" value="Publicar" />
+        </form>
+    </div>
+</main>

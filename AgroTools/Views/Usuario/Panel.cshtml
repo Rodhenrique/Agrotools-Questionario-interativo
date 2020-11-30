@@ -1,0 +1,45 @@
+﻿@model AgroTools.ViewModels.QuestionarioViewModel
+<main >
+    <div class="container-panel">
+        <div class="panel-container">
+            <div class="panel-novo">
+
+                <div class="d-flex flex-column align-items-center">
+                    <h3>Criar novo questionario</h3>
+                    <div class="d-flex flex-column align-items-center">
+                <a class="botao-criar" asp-controller="Questionario" asp-action="Index">
+                    <div class="botao-novo">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                </a>
+                    <h3>Nova folha</h3>
+                    </div>
+                </div>
+            </div> 
+            <div class="panel-quests">
+                <div class="buscar-quests">
+                    <h2>Questionarios criados</h2>
+                </div>
+                <div class="questionarios">
+                    @foreach (var item in Model.questionarios)
+                    {
+                    <div class="item-quest">
+                        <div class="item-quest-titulo">
+                            <input value="@item.Titulo" type="text" />
+                        </div>
+                        <div class="item-quest-descricao">
+                            <p>@item.Descricao</p>
+                        </div>
+                        <div class="item-quest-url">
+                            <p>Link para responder</p>
+                        <input value="https://localhost:5001/MyQuestionario/@item.Url" type="text" />
+                        </div>
+
+                        <a href='@Url.Action("ListarQuestionario","Usuario", new {ID = item.ID})'>Ver mais</a>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
